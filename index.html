@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>PPO Kalkulator - Antonio Lopac</title>
+
+    <link href="css/flatly.css" rel="stylesheet">
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+
+</head>
+
+
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">PPO Kalkulator</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="themes">
+                        <li>
+                            <a href="../default/">Default</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="../cerulean/">Cerulean</a>
+                        </li>
+                        <li>
+                            <a href="../cosmo/">Cosmo</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Flatly <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="download">
+                        <li>
+                            <a href="http://jsfiddle.net/bootswatch/jmg3gykg/">Open Sandbox</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="./bootstrap.min.css">bootstrap.min.css</a>
+                        </li>
+                        <li>
+                            <a href="./bootstrap.css">bootstrap.css</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="./variables.less">variables.less</a>
+                        </li>
+                        <li>
+                            <a href="./bootswatch.less">bootswatch.less</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="./_variables.scss">_variables.scss</a>
+                        </li>
+                        <li>
+                            <a href="./_bootswatch.scss">_bootswatch.scss</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="http://www.typescriptlang.org/">Built with TypeScript</a>
+                </li>
+                <li>
+                    <a href="http://www.typescriptlang.org/">
+                        <img class="img-responsive" src="ms.png" style="float: right;" width="100" height="25" alt="TypeScript"/>
+                    </a>
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container"/>
+<div class="page-header" id="banner">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-6">
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="inputForm" class="navbar-form navbar-left">
+
+    <h4>Broj razdoblja:</h4>
+    <div class="form-group">
+        <input type="text" id="brojRaz" class="form-control" placeholder="Broj">
+    </div>
+    <button class="btn btn-info" id="btnSubmit">Kreni</button>
+    <a class="btn btn-danger" id="eraseCalcs">Izbriši</a>
+
+    <br/><br />
+    <div id="methodsForm">
+        <h4>Metoda:</h4>
+
+        <button class="btn btn-success" id="movingAvg">Pomična aritmetička sredina</button>
+        <button class="btn btn-success" id="weightAvg">Ponderirana aritmetička sredina</button>
+        <button class="btn btn-success" id="btnSubmit3">Eksponencijalno izglađivanje</button>
+        <button class="btn btn-success" id="btnSubmit4">Linearni trend</button>
+
+        
+        <br/><br />
+
+        <div class="progress progress-striped active">
+            <div id="progbar" class="progress-bar progress-bar-info" style="width: 25%"></div>
+        </div>
+
+        <div id="methodMisc">\({}\)</div>
+    </div>
+</div>
+
+<div id="tablica" class="col-lg-12">
+    <div class="page-header">
+        <h2 id="tables">Tablica</h2>
+    </div>
+    <div class="bs-component">
+        <table class="table table-striped table-hover ">
+            <thead>
+            <tr id="tableHead">
+                <th>#</th>
+                <th>Mjesec</th>
+                <th>Potražnja</th>
+            </tr>
+            </thead>
+            <tbody id="tablicaBody">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="app.js"></script>
+
+
+</body>
+</html>
