@@ -6,24 +6,44 @@ var CalcTable = (function () {
         this.table = document.getElementById("tablicaBody");
     }
     CalcTable.prototype.initialize = function (tCount) {
+        if (isNaN(tCount) || typeof tCount === "undefined" || tCount === 0) {
+            this.showWarning();
+            return;
+        }
         this.count = tCount;
         this.initialized = true;
         for (var i = this.count; i >= 1; i--) {
             var row = this.table.insertRow(0);
             var cell = row.insertCell(0);
             cell.innerHTML = i.toString();
-            var cell3 = row.insertCell(1);
-            cell3.innerHTML = this.monthName(i);
-            var cell2 = row.insertCell(2);
-            cell2.innerHTML = "<div class='form-group'><input type='text' id='raz" + i + "' style='width: 20%;' class='form-control' placeholder='Unesi potra\u017Enju..'></div>";
+            var cell2 = row.insertCell(1);
+            cell2.innerHTML = this.monthName(i);
+            var cell3 = row.insertCell(2);
+            cell3.innerHTML = "<div class='form-group'><input type='text' id='raz" + i + "'  class='form-control' placeholder='Unesi potra\u017Enju..'></div>";
         }
+    };
+    CalcTable.prototype.showWarning = function () {
+        $("#warning").fadeIn().delay(1500).fadeOut();
     };
     CalcTable.prototype.movingAverage = function (n) {
         var values = [];
         var results = [];
-        //console.log(`N: ${n}`);
+        if (isNaN(n) || typeof n === "undefined" || n === 0) {
+            this.showWarning();
+            return;
+        }
         for (var i = 0; i < this.count; i++) {
-            var num = Number($("#raz" + (i + 1)).val());
+            var num;
+            try {
+                num = Number($("#raz" + (i + 1)).val());
+                console.log(num);
+                if (isNaN(num) || typeof num === "undefined" || num === 0) {
+                    this.showWarning();
+                    return;
+                }
+            }
+            catch (e) {
+            }
             values.push(parseFloat(num.toFixed(2)));
         }
         var l = (this.count - n) + 1;
@@ -99,6 +119,9 @@ var CalcTable = (function () {
     };
     CalcTable.prototype.hideElements = function () {
         $("#tablica").hide();
+        $("#methodMisc").empty();
+        $("#methodMisc").append("<span class='MathJax_Preview' style='color: inherit;'></span><span class='MathJax' id='MathJax-Element-1-Frame' tabindex='0' data-mathml='<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mrow class=&quot;MJX-TeXAtom-ORD&quot;></mrow></math>' role='presentation' style='position: relative;'><nobr aria-hidden='true'><span class='math' id='MathJax-Span-1' role='math' style='width: 0.003em; display: inline-block;'><span style='display: inline-block; position: relative; width: 0.003em; height: 0px; font-size: 117%;'><span style='position: absolute; clip: rect(3.821em 1000em 4.162em -999.997em); top: -3.986em; left: 0.003em;'><span class='mrow' id='MathJax-Span-2'><span class='texatom' id='MathJax-Span-3'><span class='mrow' id='MathJax-Span-4'></span></span></span><span style='display: inline-block; width: 0px; height: 3.991em;'></span></span></span><span style='display: inline-block; overflow: hidden; vertical-align: -0.063em; border-left-width: 0px; border-left-style: solid; width: 0px; height: 0.137em;'></span></span></nobr><span class='MJX_Assistive_MathML' role='presentation'><math xmlns='http://www.w3.org/1998/Math/MathML'><mrow class='MJX-TeXAtom-ORD'></mrow></math></span></span><script type='math/tex' id='MathJax-Element-1'>{}</script>");
+        movingAvgClicked = false;
         $("#methodsForm").hide();
         $("#eraseCalcs").hide();
     };
@@ -159,6 +182,7 @@ var calcTable = new CalcTable();
 var movingAvgClicked = false;
 $(function () {
     calcTable.hideElements();
+    $("#warning").hide();
     console.log("Loaded!");
 });
 $("#movingAvg").click(function () {
