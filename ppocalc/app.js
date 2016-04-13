@@ -386,6 +386,7 @@ $(function () {
         $(".navbar-collapse collapse").remove();
         $("#logo").remove();
         $(".navbar-header").append('<a href="#" class="navbar-brand">PPO Kalkulator</a>');
+        $(".btn btn-success").append("<br/><br/>");
     }
     $("#warning").hide();
     console.log("Loaded!");
