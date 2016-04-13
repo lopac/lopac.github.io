@@ -534,8 +534,38 @@ var weightAvgClicked = false;
 var expSmoothingClicked = false;
 var linearTrendClicked = false;
 
+var isMobile = {
+	Android() {
+		return navigator.userAgent.match(/Android/i);
+	},
+	BlackBerry() {
+		return navigator.userAgent.match(/BlackBerry/i);
+	},
+	iOS() {
+		return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+	},
+	Opera() {
+		return navigator.userAgent.match(/Opera Mini/i);
+	},
+	Windows() {
+		return navigator.userAgent.match(/IEMobile/i);
+	},
+	any() {
+		return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+	}
+};
+
+
+
 $(() => {
 	calculator.hideElements();
+
+	if (isMobile.any()) {
+		alert('Mobile');
+		$(".navbar-collapse collapse").remove();
+		$("#logo").remove();
+	}
+
 	$("#warning").hide();
 	console.log("Loaded!");
 });
