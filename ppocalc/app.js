@@ -382,9 +382,10 @@ var isMobile = {
 $(function () {
     calculator.hideElements();
     if (isMobile.any()) {
-        alert('Mobile');
+        $(".nav navbar-nav navbar-left").remove();
         $(".navbar-collapse collapse").remove();
         $("#logo").remove();
+        $(".navbar-header").append('<a href="#" class="navbar-brand">PPO Kalkulator</a>');
     }
     $("#warning").hide();
     console.log("Loaded!");
