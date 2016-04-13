@@ -247,8 +247,10 @@ var Calculator = (function () {
         $("#expSmoothing").removeClass("btn btn-warning").addClass("btn btn-success");
         $("#weightAverage").removeClass("btn btn-warning").addClass("btn btn-success");
         var demands = this.getDemands();
-        if (demands === null)
+        if (demands === null) {
+            linearTrendClicked = false;
             return;
+        }
         $("#linearTrend").removeClass("btn btn-success").addClass("btn btn-warning");
         $("#graphChart").empty();
         $("#tablica").show();
@@ -395,8 +397,8 @@ $("#movingAverage").click(function () {
 });
 $("#linearTrend").click(function () {
     if (!linearTrendClicked) {
-        calculator.linearTrend();
         linearTrendClicked = true;
+        calculator.linearTrend();
     }
 });
 //# sourceMappingURL=app.js.map

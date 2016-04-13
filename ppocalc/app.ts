@@ -381,8 +381,10 @@ class Calculator {
 
 		var demands = this.getDemands();
 
-		if (demands === null)
+		if (demands === null) {
+			linearTrendClicked = false;
 			return;
+		}
 
 		$("#linearTrend").removeClass("btn btn-success").addClass("btn btn-warning");
 
@@ -587,8 +589,8 @@ $("#movingAverage").click(() => {
 $("#linearTrend").click(() => {
 
 	if (!linearTrendClicked) {
-		calculator.linearTrend();
 		linearTrendClicked = true;
+		calculator.linearTrend();
 	}
 
 });
