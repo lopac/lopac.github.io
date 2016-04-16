@@ -2,11 +2,11 @@
   font-family: 'Quirlycues';
   font-style: normal;
   font-weight: 300;
-  src: url('/files/qurly.woff') format('woff');
+  src: url('/qurly.woff') format('woff');
 }
 
 html {
-  background: #eee url("/files/leather.png") repeat top center;
+  background: #eee url("/leather.png") repeat top center;
   overflow-x: hidden;
 }
 
@@ -33,7 +33,7 @@ body {
   position: relative;
   width: 1280px;
   height: 800px;
-  background: #eee url("/files/linen.png") repeat top center;
+  background: #eee url("/linen.png") repeat top center;
   box-shadow: 0px 22px 54px rgba(0, 0, 0, 0.5);
 }
 
