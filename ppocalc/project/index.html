@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>PPO Kalkulator - Antonio Lopac</title>
+
+    <link href="css/yeti.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous"></script>
+   
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+
+</head>
+
+
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <!-- Calculator icon by Icons8 -->
+            <ul id="brand" class="nav navbar-nav navbar-left">
+                <li id="logo">
+                    <a>
+                        <img class="img-responsive" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAYAAADFeBvrAAACIElEQVRoQ+1a0VXDMAw8TQBMAJ0AmACYhLIBm8AGwCTABLQT0G7ABuKpL+EZYyVxLDcNT/lMFVvnU62TLcKAh5lvAdwDuBhgXsNkBeCRiF76BqcuA2Y+BvA6IZDYPQF2Q0Rfmt99gD4OCEyLYUVEl9mAmFlC7KGP4ol+vyOi59TcKkPMHLPzDmBJRJt9gmDmMwDi/FUwr8pSFyCOHF/sG0w7fwPqM/SHiJK+DwakDVDKFjNfA3gCIEyEj0SChNabvGTmXwt8yIBk5WMwLbANES3mBmi38vGKt4y07+fEkANKMdrG6CFsCs6QM5SzTRrkIRGaR8o4WyLabelz2uUksYq0OY1AbRupVSexAjjpku2lTPWUMcKSrfQBICslUmQKcSrSSJj8eYqlT00GxoztgOJdZcwq1vzGGUowlKxYlYpSyKlqb8GQWrGmKkoAVe2LAfVVrEMzeVBWD6pAc+3N1PbsAHUpBSXkVGVhYV8ccppSaJz7k8lr21sAqplWssd2QK4UsoOm7AOLkKua+XOVhQWgqpk/V1kUA3KloNwO5EqZXPvB0seVgnIGYaUsiv9DZZus/dcOyJWCfVR1jmgRcq4UtFNWizOIYoZcKbhS0G83rBovpPPpPNhqkrcPVpk/8wxiTUTJVrcuLfe/mpeaa8CYpT1nm+R0Kjti3dcvJw2AEmph6E0Jai0XX6MbAINaZNm0aE4FTIBIi2ayRy5c4W9GYHBTrlq7zgAAAABJRU5ErkJggg==" width="24" height="24" title="Calculator">
+                    </a>
+                </li>
+                <li><a href="#" class="navbar-brand">PPO Kalkulator</a></li>
+            </ul>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="http://www.typescriptlang.org/">Built with TypeScript</a>
+                </li>
+                <li>
+                    <a href="http://www.typescriptlang.org/">
+                        <img class="img-responsive" src="ms.png" style="float: right;" width="100" height="25" alt="TypeScript"/>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+
+    <div class="container">
+        <div class="page-header" id="banner">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-6">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="inputForm" class="navbar-form navbar-left">
+            <div id="warning">
+                <div class='alert alert-dismissible alert-danger'>
+                    <button type='button' class='close' data- dismiss='alert'>&times;</button>
+                    <strong> Pogreška!</strong> <a href='#' class='alert-link'>
+                        Krivo uneseni podaci
+                    </a>
+                </div>
+            </div>
+            <h4>Broj razdoblja:</h4>
+            <div class="form-group">
+                <input type="text" id="periodsForm" class="form-control" placeholder="Broj">
+            </div>
+            <button class="btn btn-info" id="submit">Kreni</button>
+            <a class="btn btn-danger" id="eraseBtn">Izbriši</a>
+
+            <br /><br />
+            <div id="methodsForm">
+                <h4>Metoda:</h4>
+
+                <button class="btn btn-success" id="movingAverage">Pomična aritmetička sredina</button>
+                <button class="btn btn-success" id="weightAverage">Ponderirana aritmetička sredina</button>
+                <button class="btn btn-success" id="expSmoothing">Eksponencijalno izglađivanje</button>
+                <button class="btn btn-success" id="linearTrend">Linearni trend</button>
+
+
+                <br /><br />
+
+
+                <div id="methodMisc"></div>
+            </div>
+        </div>
+
+        <div id="tablica" class="col-lg-12">
+            <div class="page-header">
+                <h2 id="tables">Tablica</h2>
+            </div>
+            <div class="bs-component">
+                <table class="table table-striped table-hover ">
+                    <thead>
+                        <tr id="tableHead">
+                            <th>#</th>
+                            <th>Mjesec</th>
+                            <th>Potražnja</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablicaBody"></tbody>
+                </table>
+            </div>
+        </div>
+        <br /><br /><br /><br />
+        <div id="graphChart" class="col-lg-12" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+       
+
+        
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <ul class="list-unstyled">
+                        <li class="pull-right"><a href="//github.com/lopac/lopac.github.io/tree/master/ppocalc">Project on GitHub</a></li>
+                    </ul>
+                    <p>
+                        Made by <a href="http://lopac.github.io" rel="nofollow">Antonio Lopac</a>
+                    </p>
+
+                    <p>
+                        Based on <a href="http://getbootstrap.com" rel="nofollow">Bootstrap & TypeScript </a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.
+                    </p>
+
+                </div>
+            </div>
+
+        </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+        <script src="js/bootstrap.min.js"></script>
+        <script src="app.js"></script>
+</div>
+    </body>
+
+
+</html>
