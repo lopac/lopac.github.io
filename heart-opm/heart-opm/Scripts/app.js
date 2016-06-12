@@ -52,7 +52,7 @@ function initialize() {
 
     var texture = new THREE.Texture();
     var loader = new THREE.ImageLoader(manager);
-    loader.load("heart-opm/heart-opm/Content/wood.png", function (image) {
+    loader.load("Content/wood.png", function (image) {
 
         texture.image = image;
         texture.needsUpdate = true;
@@ -60,7 +60,7 @@ function initialize() {
     });
 
     var modelLoader = new THREE.OBJLoader(manager);
-    modelLoader.load("heart-opm/heart-opm/Scripts/heart-texture.json",
+    modelLoader.load("Scripts/heart-texture.json",
         function (object) {
             heart = object;
 
