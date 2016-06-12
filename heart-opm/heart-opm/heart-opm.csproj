@@ -23,11 +23,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="Content\wood.png" />
     <Content Include="index.html" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\jquery-2.2.2.js" />
+    <Content Include="Scripts\OBJLoader.js" />
+    <Content Include="Scripts\three.js" />
     <Content Include="web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="app.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
