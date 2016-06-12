@@ -60,7 +60,7 @@ function initialize() {
     });
 
     var modelLoader = new THREE.OBJLoader(manager);
-    modelLoader.load("Scripts/heart-texture.json",
+    modelLoader.load("heart-texture.json",
         function (object) {
             heart = object;
 
