@@ -60,7 +60,7 @@ function initialize() {
     });
 
     var modelLoader = new THREE.OBJLoader(manager);
-    modelLoader.load("heart-texture.json",
+    modelLoader.load("Content/heart-texture.json",
         function (object) {
             heart = object;
 
@@ -74,9 +74,6 @@ function initialize() {
             });
 
 
-            //object.position.x = -100;
-            //object.position.y = -55;
-            //object.position.z = 100;
 
             object.scale.x = object.scale.y = object.scale.z = 0.05;
 
