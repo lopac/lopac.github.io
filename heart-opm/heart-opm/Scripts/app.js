@@ -52,7 +52,7 @@ function initialize() {
 
     var texture = new THREE.Texture();
     var loader = new THREE.ImageLoader(manager);
-    loader.load("Content/wood.png", function (image) {
+    loader.load("heart-opm/heart-opm/Content/wood.png", function (image) {
 
         texture.image = image;
         texture.needsUpdate = true;
@@ -60,7 +60,7 @@ function initialize() {
     });
 
     var modelLoader = new THREE.OBJLoader(manager);
-    modelLoader.load('Scripts/heart-texture.json',
+    modelLoader.load("heart-opm/heart-opm/Scripts/heart-texture.json",
         function (object) {
             heart = object;
 
@@ -86,7 +86,7 @@ function initialize() {
 
 
     renderer = new THREE.WebGLRenderer({ alpha: true });
-    //renderer.setPixelRatio(window.pixels);
+
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x5E82A6, 1);
     container.appendChild(renderer.domElement);
@@ -98,7 +98,7 @@ function initialize() {
                        })
                    .on('mousemove',
                        function (e) {
-                           //console.log(e);
+               
                            var deltaMove = {
                                x: e.offsetX - prevMouse.x,
                                y: e.offsetY - prevMouse.y
